@@ -1,0 +1,14 @@
+ID ok, CONFIG = 1e1f1b1d (FRAC_W 29, FRAC_MX 27, FRAC_MR 31, FRAC_P 30)
+N_ITER = 80
+  100 vectors, 100 pass
+  200 vectors, 200 pass
+  300 vectors, 300 pass
+  400 vectors, 400 pass
+  500 vectors, 500 pass
+  600 vectors, 600 pass
+==================================================
+667/667 vectors bit-exact (g and z), first fail -1
+latency: min 2738, max 2738, avg 2738.0 cycles = 27.38 us @ 100 MHz
+RESULT: PASS
+==================================================
+sim/tb_mpc_accel.v:162: $finish called at 21584385000 (1ps)

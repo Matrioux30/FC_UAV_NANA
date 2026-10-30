@@ -1,0 +1,40 @@
+// Device-tree overlay for the MPC accelerator on Kria KV260 (Ubuntu 22.04, xmutil).
+// Compile on the board:  dtc -@ -O dtb -o mpc_accel.dtbo mpc_accel.dtsi
+/dts-v1/;
+/plugin/;
+
+&fpga_full {
+	firmware-name = "mpc_accel.bit.bin";
+	resets = <&zynqmp_reset 116>;
+};
+
+&amba {
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	// PS-PL port widths: <14 0xa00> = HPM0_FPD and HPM1_FPD 128-bit (Vivado default, kept in build.tcl)
+	afi0: afi0 {
+		compatible = "xlnx,afi-fpga";
+		config-afi = <0 0>, <1 0>, <2 0>, <3 0>, <4 0>, <5 0>, <6 0>, <7 0>, <8 0>, <9 0>,
+		             <10 0>, <11 0>, <12 0>, <13 0>, <14 0xa00>, <15 0x000>;
+	};
+
+	// pl_clk0 = 100 MHz (zynqmp_clk 71 = PL0_REF)
+	clocking0: clocking0 {
+		compatible = "xlnx,fclk";
+		#clock-cells = <0>;
+		clocks = <&zynqmp_clk 71>;
+		clock-output-names = "fabric_clk";
+		assigned-clocks = <&zynqmp_clk 71>;
+		assigned-clock-rates = <100000000>;
+	};
+
+	// mpc_accel_axi at M_AXI_HPM0_FPD 0xA000_0000, irq on pl_ps_irq0[0] = GIC SPI 89.
+	// generic-uio binds only with bootarg uio_pdrv_genirq.of_id=generic-uio; the driver falls back to /dev/mem.
+	mpc_accel_0: mpc_accel@a0000000 {
+		compatible = "generic-uio";
+		reg = <0x0 0xa0000000 0x0 0x1000>;
+		interrupt-parent = <&gic>;
+		interrupts = <0 89 4>;
+	};
+};

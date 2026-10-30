@@ -1,0 +1,1 @@
+q16_16: 4000/4000 vectors bit-exact | latency: min 2738, max 2738, avg 2738.0 cycles = 27.38 us @ 100 MHz
