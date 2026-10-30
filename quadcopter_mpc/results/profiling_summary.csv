@@ -1,0 +1,7 @@
+Tahap,Avg (us),Min (us),P99 (us),Max (us),Jitter StdDev (us),Jitter Peak-Peak (us),Avg/Ts (%),Max/Ts (%),Partisi
+1. Current State,0.04648,0,0.1,13.1,0.191916,13.1,0.0009296,0.262,PS
+2a. Precompute H/W (offline),0,0,0,0,0,0,0,0,Offline/BRAM
+2b. Prediction (online gradient),1.05562,0.9,1.9,18,0.561352,17.1,0.0211124,0.36,PL
+3. Optimization (ADMM),13.7032,11.8,30.1,82.3,4.31661,70.5,0.274064,1.646,PL
+4. Optimal Control,0.02616,0,0.1,0.5,0.044628,0.5,0.0005232,0.01,PS
+Total,14.8315,12.8,33.2,83.3,4.57438,70.5,0.296629,1.666,-

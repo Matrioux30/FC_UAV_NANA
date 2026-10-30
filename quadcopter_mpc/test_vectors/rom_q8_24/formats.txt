@@ -1,0 +1,9 @@
+data   Q8.24  (x, r, g, rhs, u, z, y, ZMIN, ZMAX)
+W      Q3.29
+MX     Q5.27
+MR     Q2.30
+PARAMS Q2.30  (rho, alpha, 1-alpha)
+N_ITER 80
+X_SCALE 1 1 1 1 1 1 4 4 4 0.5 0.5 0.5
+R_SCALE 1 1 1 4  (x_ref y_ref z_ref psi_ref, repeated for p = 0..NP-1)
+U_SCALE 1.1597862304407696 0.024242389869579297 0.032511650688041349 0.050588640921071369  (u_k = U_SCALE_k * z_k, F_total += HOVER_THRUST)
